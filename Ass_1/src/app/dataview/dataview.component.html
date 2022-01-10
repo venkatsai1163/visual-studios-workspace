@@ -1,0 +1,58 @@
+<div>
+<h1>Student's Marks Data</h1>
+</div>
+
+<div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demotable" *ngIf='flag'>
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+        
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- RollNumber Column -->
+    <ng-container matColumnDef="RollNumber">
+      <th mat-header-cell *matHeaderCellDef> RollNumber </th>
+      <td mat-cell *matCellDef="let element"> {{element.rollnumber}} </td>
+    </ng-container>
+  
+    <!-- Mark1 Column -->
+    <ng-container matColumnDef="Mark1">
+      <th mat-header-cell *matHeaderCellDef> Mark1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.mark1}} </td>
+    </ng-container>
+  
+    <!-- Mark2 Column -->
+    <ng-container matColumnDef="Mark2">
+      <th mat-header-cell *matHeaderCellDef> Mark2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.mark2}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Mark3">
+        <th mat-header-cell *matHeaderCellDef> Mark3 </th>
+        <td mat-cell *matCellDef="let element"> {{element.mark3}} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="Grade">
+        <th mat-header-cell *matHeaderCellDef> Grade </th>
+        <td mat-cell *matCellDef="let element"> {{element.grade}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> {{element.total +" / 300"}} </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+  </table>
+  </div>
+  <div *ngIf='flag_1'>
+      <p>No data avaliable!..........</p>
+  </div>
