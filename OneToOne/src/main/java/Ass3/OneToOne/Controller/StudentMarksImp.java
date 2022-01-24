@@ -5,6 +5,8 @@ import Ass3.OneToOne.Model.MarksModel;
 import Ass3.OneToOne.Model.StudentModel;
 import Ass3.OneToOne.Service.IMarksSevice;
 import Ass3.OneToOne.Service.IStudentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ import java.util.List;
  */
 @RestController
 public class StudentMarksImp implements StudentIController,MarksIController{
+
+    /** The log. */
+    private final Logger log=LoggerFactory.getLogger(StudentMarksImp.class);
 
     /** The student service. */
     @Autowired
@@ -35,7 +40,8 @@ public class StudentMarksImp implements StudentIController,MarksIController{
     @Override
     public ResponseEntity<List<MarksModel>> getMarks() {
 
-        return new ResponseEntity<List<MarksModel>>(marksSevice.getMarksData(), HttpStatus.OK);
+        List<MarksModel> list = marksSevice.getMarksData();
+        return new ResponseEntity<List<MarksModel>>(list, HttpStatus.OK);
     }
 
     /**
@@ -46,7 +52,8 @@ public class StudentMarksImp implements StudentIController,MarksIController{
     @Override
     public ResponseEntity<List<StudentModel>> getStudents() {
 
-        return new ResponseEntity<List<StudentModel>>(studentService.getStudentData(), HttpStatus.OK);
+        List<StudentModel> list = studentService.getStudentData();
+        return new ResponseEntity<List<StudentModel>>(list, HttpStatus.OK);
     }
 
     /**
@@ -61,7 +68,8 @@ public class StudentMarksImp implements StudentIController,MarksIController{
         if( id != 0
                 && id > 0) {
 
-            return new ResponseEntity<StudentModel>(studentService.getStudentDataById(id), HttpStatus.OK);
+            StudentModel studentModel=studentService.getStudentDataById(id);
+            return new ResponseEntity<StudentModel>(studentModel, HttpStatus.OK);
         }
         else {
 
